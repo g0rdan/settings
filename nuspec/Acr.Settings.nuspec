@@ -36,6 +36,12 @@ Newtonsoft.Json dependency has been removed
         <!-- ios -->
         <file src="..\src\Acr.Settings.iOS\bin\iPhone\Release\Acr.Settings.*" target="lib\Xamarin.iOS10" />
 
+        <!-- tvOS -->
+        <file src="..\src\Acr.Settings.tvOS\bin\Release\Acr.Settings.*" target="lib\Xamarin.tvOS10" />
+
+        <!-- macOS -->
+        <file src="..\src\Acr.Settings.macOS\bin\Release\Acr.Settings.*" target="lib\Xamarin.Mac20" />
+
         <!--net45-->
         <file src="..\src\Acr.Settings.NetCore\bin\Release\Acr.Settings.*" target="lib\net45" />
 
