@@ -9,9 +9,8 @@
     <Import_RootNamespace>Acr.Settings.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AbstractSettingTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BindingTests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AbstractMainTests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestBind.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)LocalSettingTests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RoamingSettingTests.cs" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 
@@ -89,7 +88,6 @@ namespace Acr.Settings
         /// Will create a bound object set FROM the settings
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="prefix">Set this if you want to send multiple objects of this type to settings - otherwise default of type name is assumed</param>
         T Bind<T>() where T : INotifyPropertyChanged, new();
 
 

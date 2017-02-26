@@ -1,0 +1,17 @@
+
+
+Settings.Bind<MyObject>();
+// prefix must be allow internally
+
+"MyObject.Property1"
+"MyObject.Property2"
+"MyObject.MyOtherObject.Property1" // if INPC
+"MyObject.NoneInpc"               // whole object is serialized
+
+if environment is used
+"Environment.MyObject.Property1"
+
+if observable collection
+-- use index, but what if it changes?
+
+"ObCol[0].MyObject.Property1" // if INPC - what if index changes?

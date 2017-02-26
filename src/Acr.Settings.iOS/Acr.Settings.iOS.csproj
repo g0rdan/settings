@@ -42,6 +42,12 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acr.Settings.Abstractions\Acr.Settings.Abstractions.csproj">
+      <Project>{4b8af987-a937-4d99-911a-e836e5798fb2}</Project>
+      <Name>Acr.Settings.Abstractions</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="..\Acr.Settings.Shared\Acr.Settings.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.Settings.Shared\Acr.Settings.Shared.projitems')" />
   <Import Project="..\Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
