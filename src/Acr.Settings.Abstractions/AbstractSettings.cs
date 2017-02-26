@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
 
 
 namespace Acr.Settings
@@ -12,25 +11,12 @@ namespace Acr.Settings
 
     public abstract class AbstractSettings : ISettings
     {
-        protected AbstractSettings()
-        {
-            this.KeysNotToClear = new List<string>();
-        }
-
-
+        public string Environment { get; set; }
         public abstract bool Contains(string key);
         protected abstract object NativeGet(Type type, string key);
         protected abstract void NativeSet(Type type, string key, object value);
         protected abstract void NativeRemove(string[] keys);
         protected abstract IDictionary<string, string> NativeValues();
-
-
-        public event EventHandler<SettingChangeEventArgs> Changed;
-
-        public bool IsRoamingProfile { get; protected set; }
-        public List<string> KeysNotToClear { get; set; }
-        public virtual IReadOnlyDictionary<string, string> List { get; protected set; }
-        public JsonSerializerSettings JsonSerializerSettings { get; set; }
 
 
         public virtual object GetValue(Type type, string key, object defaultValue = null)
@@ -82,17 +68,14 @@ namespace Acr.Settings
         {
             try
             {
-                var action = this.Contains(key)
-                    ? SettingChangeAction.Update
-                    : SettingChangeAction.Add;
-
                 if (value == null)
+                {
                     this.Remove(key);
-
-                else {
+                }
+                else
+                {
                     var type = this.UnwrapType(value.GetType());
                     this.NativeSet(type, key, value);
-                    this.OnChanged(new SettingChangeEventArgs(action, key, value));
                 }
             }
             catch (Exception ex)
@@ -106,17 +89,14 @@ namespace Acr.Settings
         {
             try
             {
-                var action = this.Contains(key)
-                    ? SettingChangeAction.Update
-                    : SettingChangeAction.Add;
-
                 if (EqualityComparer<T>.Default.Equals(value, default(T)))
+                {
                     this.Remove(key);
-
-                else {
+                }
+                else
+                {
                     var type = this.UnwrapType(typeof(T));
                     this.NativeSet(type, key, value);
-                    this.OnChanged(new SettingChangeEventArgs(action, key, value));
                 }
             }
             catch (Exception ex)
@@ -147,26 +127,6 @@ namespace Acr.Settings
         }
 
 
-        public virtual void Clear()
-        {
-            var keys = this.NativeValues()
-                .Where(x => this.ShouldClear(x.Key))
-                .Select(x => x.Key)
-                .ToArray();
-
-            this.NativeRemove(keys);
-            this.OnChanged(new SettingChangeEventArgs(SettingChangeAction.Clear, null, null));
-        }
-
-
-        protected virtual void OnChanged(SettingChangeEventArgs args)
-        {
-            this.Changed?.Invoke(this, args);
-            var native = this.NativeValues();
-            this.List = new ReadOnlyDictionary<string, string>(native);
-        }
-
-
         protected virtual string Serialize(Type type, object value)
         {
             if (type == typeof(string))
@@ -177,10 +137,9 @@ namespace Acr.Settings
                 var format = value as IFormattable;
                 return format == null
                     ? value.ToString()
-                    : format.ToString(null, System.Globalization.CultureInfo.InvariantCulture);
+                    : format.ToString(null, CultureInfo.InvariantCulture);
             }
-
-            return JsonConvert.SerializeObject(value, this.JsonSerializerSettings);
+            return "TODO"; // TODO
         }
 
 
@@ -190,15 +149,9 @@ namespace Acr.Settings
                 return value;
 
             if (this.IsStringifyType(type))
-                return Convert.ChangeType(value, type, System.Globalization.CultureInfo.InvariantCulture);
+                return Convert.ChangeType(value, type, CultureInfo.InvariantCulture);
 
-            return JsonConvert.DeserializeObject(value, type, this.JsonSerializerSettings);
-        }
-
-
-        protected virtual bool ShouldClear(string key)
-        {
-            return !this.KeysNotToClear.Any(x => x.Equals(key));
+            return "TODO"; // TODO
         }
 
 
@@ -265,11 +218,7 @@ namespace Acr.Settings
             return type
                 .GetTypeInfo()
                 .DeclaredProperties
-                .Where(x =>
-                    x.CanRead &&
-                    x.CanWrite &&
-                    x.GetCustomAttribute<IgnoreAttribute>() == null
-                );
+                .Where(x => x.CanRead && x.CanWrite);
         }
 
 

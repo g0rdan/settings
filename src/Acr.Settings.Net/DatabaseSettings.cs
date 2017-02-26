@@ -9,13 +9,13 @@ using System.Runtime.CompilerServices;
 
 namespace Acr.Settings {
 
-    public class DatabaseSettingsImpl : AbstractSettings {
+    public class DatabaseSettings : AbstractSettings {
         readonly DbProviderFactory factory;
         readonly Dictionary<string, string> items;
         readonly string connectionString;
 
 
-        public DatabaseSettingsImpl(string connectionStringName, string appName, string environment = null, string tableName = "Settings") {
+        public DatabaseSettings(string connectionStringName, string appName, string environment = null, string tableName = "Settings") {
             this.ApplicationName = appName;
             this.Environment = environment ?? System.Environment.MachineName;
             this.TableName = tableName;

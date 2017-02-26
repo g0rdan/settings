@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace Acr.Settings {
 
-    public class AppConfigSettingsImpl : AbstractSettings {
+    public class AppConfigSettings : AbstractSettings {
         readonly Configuration config;
 
 
-        public AppConfigSettingsImpl(string fileName = null) {
+        public AppConfigSettings(string fileName = null) {
             this.ConfigurationFileName = fileName;
 
             if (this.ConfigurationFileName == null)

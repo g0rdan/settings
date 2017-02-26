@@ -6,13 +6,13 @@ using Microsoft.Win32;
 
 namespace Acr.Settings {
 
-    public class RegistrySettingsImpl : AbstractSettings {
+    public class RegistrySettings : AbstractSettings {
         readonly RegistryKey registry;
         public bool IsCurrentUser { get; private set; }
         public string RegistryKeyName { get; private set; }
 
 
-        public RegistrySettingsImpl(string registryKey, bool userLevel) {
+        public RegistrySettings(string registryKey, bool userLevel) {
             var r = userLevel
                 ? Registry.CurrentUser
                 : Registry.LocalMachine;
