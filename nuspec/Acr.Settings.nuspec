@@ -21,6 +21,7 @@ A cross platform settings plugin for Xamarin and Windows.  Unlike other setting 
         <tags>windows uwp winphone android ios xamarin xam.pcl settings</tags>
         <releaseNotes>
 6.0.0
+macOS & tvOS Support
 Support for old WP8/8.1 is gone
 Newtonsoft.Json dependency has been removed
         </releaseNotes>

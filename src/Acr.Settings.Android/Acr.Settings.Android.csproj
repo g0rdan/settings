@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="..\Acr.Settings.Shared\Acr.Settings.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.Settings.Shared\Acr.Settings.Shared.projitems')" />
+  <Import Project="..\Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

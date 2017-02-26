@@ -9,7 +9,7 @@ namespace Acr.Settings.Tests {
     public class RoamingSettingTests : AbstractSettingTests {
 
         protected override ISettings Create() {
-            return new SettingsImpl("acr.settings.tests");
+            return new DefaultSettings("acr.settings.tests");
         }
 
 

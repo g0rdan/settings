@@ -8,7 +8,7 @@ namespace Acr.Settings.Tests {
     public class LocalSettingTests : AbstractSettingTests {
 
         protected override ISettings Create() {
-            return new SettingsImpl(null);
+            return new DefaultSettings(null);
         }
 
 

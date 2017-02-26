@@ -6,8 +6,8 @@
     <ProjectGuid>{F3ACF891-B8BE-4526-9EED-A7DF80EBF665}</ProjectGuid>
     <ProjectTypeGuids>{A3F8F2AB-B479-4A4A-A458-A89E7DC349F1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Acr.Settings.Mac</RootNamespace>
-    <AssemblyName>Acr.Settings.Mac</AssemblyName>
+    <RootNamespace>Acr.Settings</RootNamespace>
+    <AssemblyName>Acr.Settings</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
@@ -63,8 +63,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acr.Settings.Abstractions\Acr.Settings.Abstractions.csproj">
+      <Project>{4b8af987-a937-4d99-911a-e836e5798fb2}</Project>
+      <Name>Acr.Settings.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Acr.Settings.Shared\Acr.Settings.Shared.projitems" Label="Shared" Condition="Exists('..\Acr.Settings.Shared\Acr.Settings.Shared.projitems')" />
+  <Import Project="..\Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
 </Project>
