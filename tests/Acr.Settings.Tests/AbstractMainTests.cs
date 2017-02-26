@@ -1,15 +1,14 @@
 using System;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
+using FluentAssertions;
 using Xunit;
+
 
 namespace Acr.Settings.Tests
 {
 
     public abstract class AbstractSettingTests
     {
-        protected AbstractSettingsTest()
+        protected AbstractSettingTests()
         {
             this.Settings = this.Create();
         }
@@ -33,247 +32,161 @@ namespace Acr.Settings.Tests
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void IntTest()
         {
             this.Settings.Set("Test", 99);
-            var value = this.Settings.Get<int>("Test");
-            Assert.AreEqual(99, value);
+            this.Settings.Get<int>("Test").Should().Be(99);
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void IntNullTest()
         {
             var nvalue = this.Settings.Get<int?>("Blah");
-            Assert.IsNull(nvalue, "Int? should be null");
+            nvalue.Should().BeNull("Int? should be null");
 
             nvalue = 199;
             this.Settings.Set("Blah", nvalue);
 
             nvalue = this.Settings.Get<int?>("Blah");
-            Assert.AreEqual(199, nvalue.Value);
+            //Assert.AreEqual(199, nvalue.Value);
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void DateTimeNullTest()
         {
             var dt = new DateTime(1999, 12, 31, 23, 59, 0);
             var nvalue = this.Settings.Get<DateTime?>("DateTimeNullTest");
-            Assert.IsNull(nvalue, "Should be null");
+            nvalue.Should().BeNull();
 
             this.Settings.Set("DateTimeNullTest", dt);
             nvalue = this.Settings.Get<DateTime?>("DateTimeNullTest");
-            Assert.AreEqual(dt, nvalue);
+            nvalue.Should().Be(dt);
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void SetOverride()
         {
             this.Settings.Set("Test", "1");
             this.Settings.Set("Test", "2");
-            var r = this.Settings.Get<string>("Test");
-            Assert.AreEqual("2", r);
+            this.Settings.Get<string>("Test").Should().Be("2");
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void ContainsTest()
         {
-            var flag = this.Settings.Contains(Guid.NewGuid().ToString());
-            Assert.IsFalse(flag, "Contains should have returned false");
-
+            this.Settings.Contains(Guid.NewGuid().ToString()).Should().BeFalse("Contains should have returned false");
             this.Settings.Set("Test", "1");
-            flag = this.Settings.Contains("Test");
-            Assert.IsTrue(flag, "Contains should have returned true");
+            this.Settings.Contains("Test").Should().BeTrue("Contains should have returned true");
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void RemoveTest()
         {
             this.Settings.Set("Test", "1");
-            var flag = this.Settings.Remove("Test");
-            Assert.IsTrue(flag, "Remove should have returned success");
+            this.Settings.Remove("Test").Should().Be(true, "Remove should have returned success");
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void LongTest()
         {
             long value = 1;
             this.Settings.Set("LongTest", value);
             var value2 = this.Settings.Get<long>("LongTest");
-            Assert.AreEqual(value, value2);
+            value.Should().Be(value2));
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void GuidTest()
         {
             var guid = this.Settings.Get<Guid>("GuidTest");
-            Assert.AreEqual(Guid.Empty, guid);
+            guid.Should().Be(Guid.Empty);
 
             guid = new Guid();
             this.Settings.Set("GuidTest", guid);
-            var tmp = this.Settings.Get<Guid>("GuidTest");
-            Assert.AreEqual(guid, tmp);
+            this.Settings.Get<Guid>("GuidTest").Should().Be(guid);
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void SetNullRemoves()
         {
             this.Settings.Set("SetNullRemoves", "Blah");
             this.Settings.Set<string>("SetNullRemoves", null);
-            var contains = this.Settings.Contains("SetNullRemoves");
-            Assert.IsFalse(contains);
+            this.Settings.Contains("SetNullRemoves").Should().BeFalse();
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void SetDefaultRemoves()
         {
-            long value = 1;
+            var value = 1L;
             this.Settings.Set("SetDefaultTRemoves", value);
-            this.Settings.Set<long>("SetDefaultTRemoves", default(long));
+            this.Settings.Set("SetDefaultTRemoves", default(long));
             var contains = this.Settings.Contains("SetDefaultTRemoves");
-            Assert.IsFalse(contains);
+            contains.Should().BeFalse();
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void GetDefaultParameter()
         {
             var tmp = Guid.NewGuid().ToString();
             var r = this.Settings.Get("GetDefaultParameter", tmp);
-            Assert.AreEqual(r, tmp);
+            r.Should().Be(tmp);
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void TryDefaults()
         {
-            var flag = this.Settings.SetDefault("TryDefaults", "Initial Value");
-            Assert.IsTrue(flag, "Default value could not be set");
-
-            flag = this.Settings.SetDefault("TryDefaults", "Second Value");
-            Assert.IsFalse(flag, "Default value was set and should not have been");
-
-            var currentValue = this.Settings.Get<string>("TryDefaults");
-            Assert.AreEqual("Initial Value", currentValue);
+            this.Settings.SetDefault("TryDefaults", "Initial Value").Should().BeTrue();
+            this.Settings.SetDefault("TryDefaults", "Second Value").Should().BeFalse("Default value was set and should not have been");
+            this.Settings.Get<string>("TryDefaults").Should().Be("TODO");
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
-        public virtual void ClearPreserveList()
-        {
-            this.Settings.Set("ClearPreserveTest", "Value");
-            this.Settings.KeysNotToClear.Add("ClearPreserveTest");
-            this.Settings.Clear();
-            var value = this.Settings.Get<string>("ClearPreserveTest");
-            Assert.AreEqual("Value", value);
-        }
+
+        //[Fact]
+        //public virtual void CultureFormattingTest()
+        //{
+        //    var value = 11111.1111m;
+        //    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
+        //    this.Settings.Set("CultureFormattingTest", value);
+        //    Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ja-JP");
+        //    var newValue = this.Settings.Get<decimal>("CultureFormattingTest");
+        //    Assert.AreEqual(value, newValue);
+        //}
 
 
-#if !WINDOWS_UWP && !WINDOWS_PHONE
-
-        [Test]
-        public virtual void CultureFormattingTest()
-        {
-            var value = 11111.1111m;
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-US");
-            this.Settings.Set("CultureFormattingTest", value);
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("ja-JP");
-            var newValue = this.Settings.Get<decimal>("CultureFormattingTest");
-            Assert.AreEqual(value, newValue);
-        }
-#endif
-
-
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void Binding_Basic()
         {
             var obj = this.Settings.Bind<TestBind>();
             obj.IgnoredProperty = 0;
             obj.StringProperty = "Hi";
 
-            Assert.IsTrue(this.Settings.Contains("TestBind.StringProperty"));
-            Assert.IsFalse(this.Settings.Contains("TestBind.IgnoredProperty"));
-            Assert.AreEqual("Hi", this.Settings.Get<string>("TestBind.StringProperty"));
+            this.Settings.Contains("TestBind.StringProperty").Should().BeTrue();
+            this.Settings.Contains("TestBind.IgnoredProperty").Should().BeFalse();
+            this.Settings.Get<string>("TestBind.StringProperty").Should().Be("Hi");
         }
 
 
-#if MSTESTS
-        [TestMethod]
-#else
-        [Test]
-#endif
+        [Fact]
         public virtual void Binding_Persist()
         {
             var obj = this.Settings.Bind<TestBind>();
             obj.StringProperty = "Binding_Persist";
 
             var obj2 = this.Settings.Bind<TestBind>();
-            Assert.AreEqual(obj.StringProperty, obj2.StringProperty);
+            obj.StringProperty.Should().Be(obj2.StringProperty);
         }
     }
 }

@@ -62,7 +62,6 @@ Global
 		..\tests\Acr.Settings.Tests\Acr.Settings.Tests.projitems*{869b83cd-e8f7-4a07-934a-0032cc9bdc9f}*SharedItemsImports = 4
 		Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems*{a601e533-34b2-4209-962c-60c97d96f72b}*SharedItemsImports = 4
 		Acr.Settings.Shared\Acr.Settings.Shared.projitems*{a601e533-34b2-4209-962c-60c97d96f72b}*SharedItemsImports = 4
-		Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems*{b1019c4b-e37a-4b75-9afc-980820320b6b}*SharedItemsImports = 4
 		Acr.Settings.Shared\Acr.Settings.Shared.projitems*{b1019c4b-e37a-4b75-9afc-980820320b6b}*SharedItemsImports = 4
 		..\tests\Acr.Settings.Tests\Acr.Settings.Tests.projitems*{cad5f2f4-842a-4d67-a862-7668c442e8ed}*SharedItemsImports = 4
 		Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems*{f3acf891-b8be-4526-9eed-a7df80ebf665}*SharedItemsImports = 4

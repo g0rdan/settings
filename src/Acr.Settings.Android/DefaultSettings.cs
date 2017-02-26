@@ -9,15 +9,14 @@ using Android.Preferences;
 namespace Acr.Settings
 {
 
-    public class SettingsImpl : AbstractSettings
+    public class DefaultSettings : AbstractSettings
     {
         readonly string nameSpace;
 
 
-        public SettingsImpl(string nameSpace)
+        public DefaultSettings(string nameSpace = null)
         {
             this.nameSpace = nameSpace;
-            this.IsRoamingProfile = (nameSpace != null);
         }
 
 

@@ -14,8 +14,7 @@ namespace Acr.Settings
 
         public SettingsImpl(bool isRoaming = false)
         {
-            this.IsRoamingProfile = isRoaming;
-            this.container = this.IsRoamingProfile
+            this.container = isRoaming
                 ? ApplicationData.Current.RoamingSettings
                 : ApplicationData.Current.LocalSettings;
         }

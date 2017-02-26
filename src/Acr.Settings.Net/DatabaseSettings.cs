@@ -7,15 +7,17 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 
 
-namespace Acr.Settings {
-
-    public class DatabaseSettings : AbstractSettings {
+namespace Acr.Settings
+{
+    public class DatabaseSettings : AbstractSettings
+    {
         readonly DbProviderFactory factory;
         readonly Dictionary<string, string> items;
         readonly string connectionString;
 
 
-        public DatabaseSettings(string connectionStringName, string appName, string environment = null, string tableName = "Settings") {
+        public DatabaseSettings(string connectionStringName, string appName, string environment = null, string tableName = "Settings")
+        {
             this.ApplicationName = appName;
             this.Environment = environment ?? System.Environment.MachineName;
             this.TableName = tableName;
@@ -35,21 +37,23 @@ namespace Acr.Settings {
 
 
         public string ApplicationName { get; }
-        public string Environment { get; }
         public string TableName { get; }
         public string ConnectionStringName { get; }
 
 
-        public override bool Contains(string key) {
+        public override bool Contains(string key)
+        {
             this.Init();
             lock (this.items)
                 return this.items.ContainsKey(key);
         }
 
 
-        protected override object NativeGet(Type type, string key) {
+        protected override object NativeGet(Type type, string key)
+        {
             this.Init();
-            lock (this.items) {
+            lock (this.items)
+            {
                 var value = this.items[key];
                 var obj = this.Deserialize(type, value);
                 return obj;
@@ -57,9 +61,11 @@ namespace Acr.Settings {
         }
 
 
-        protected override void NativeSet(Type type, string key, object value) {
+        protected override void NativeSet(Type type, string key, object value)
+        {
             this.Init();
-            lock (this.items) {
+            lock (this.items)
+            {
                 var item = this.Serialize(type, value);
                 var sql = this.items.ContainsKey(key)
                     ? $"INSERT INTO {this.TableName}(ApplicationName, Environment, SettingKey, SettingValue) VALUES ('{this.ApplicationName}', '{this.Environment}', '{key}', '{item}')"
@@ -71,11 +77,14 @@ namespace Acr.Settings {
         }
 
 
-        protected override void NativeRemove(string[] keys) {
+        protected override void NativeRemove(string[] keys)
+        {
             this.Init();
-            lock (this.items) {
+            lock (this.items)
+            {
                 // TODO: remove singular deletes
-                foreach (var key in keys) {
+                foreach (var key in keys)
+                {
                     this.Execute($"DELETE FROM {this.TableName} WHERE Environment = '{this.Environment}' AND ApplicationName = '{this.ApplicationName}' AND SettingKey = '{key}'");
                     this.items.Remove(key);
                 }
@@ -83,19 +92,15 @@ namespace Acr.Settings {
         }
 
 
-        protected override IDictionary<string, string> NativeValues() {
-            this.Init();
-            lock (this.items)
-                return new Dictionary<string, string>(this.items);
-        }
-
-
-        protected virtual void Execute(string sql) {
-            using (var conn = this.factory.CreateConnection()) {
+        protected virtual void Execute(string sql)
+        {
+            using (var conn = this.factory.CreateConnection())
+            {
                 conn.ConnectionString = this.connectionString;
                 conn.Open();
 
-                using (var cmd = conn.CreateCommand()) {
+                using (var cmd = conn.CreateCommand())
+                {
                     cmd.CommandText = sql;
                     cmd.ExecuteNonQuery();
                 }
@@ -105,7 +110,8 @@ namespace Acr.Settings {
 
         bool init;
         [MethodImpl(MethodImplOptions.Synchronized)]
-        protected virtual void Init() {
+        protected virtual void Init()
+        {
             if (this.init)
                 return;
 
@@ -115,18 +121,24 @@ namespace Acr.Settings {
         }
 
 
-        public virtual void Resync() {
-            lock (this.items) {
+        public virtual void Resync()
+        {
+            lock (this.items)
+            {
                 this.items.Clear();
 
-                using (var conn = this.factory.CreateConnection()) {
+                using (var conn = this.factory.CreateConnection())
+                {
                     conn.ConnectionString = this.connectionString;
-                    using (var cmd = conn.CreateCommand()) {
+                    using (var cmd = conn.CreateCommand())
+                    {
                         cmd.CommandText = $"SELECT SettingKey, SettingValue FROM {this.TableName} WHERE Environment = '{this.Environment}' AND ApplicationName = '{this.ApplicationName}'";
                         conn.Open();
 
-                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection)) {
-                            while (reader.Read()) {
+                        using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                        {
+                            while (reader.Read())
+                            {
                                 var key = reader.GetString(0);
                                 var value = reader.GetString(1);
                                 this.items.Add(key, value);
@@ -140,12 +152,14 @@ namespace Acr.Settings {
 
         // TODO: auto resync timer
 
-        public virtual void DropTable() {
+        public virtual void DropTable()
+        {
             this.Execute($"DROP TABLE {this.TableName}");
         }
 
 
-        public virtual void CreateTable() {
+        public virtual void CreateTable()
+        {
             this.Execute($@"
 CREATE TABLE {this.TableName}(
     ApplicationName nvarchar(50) NOT NULL,

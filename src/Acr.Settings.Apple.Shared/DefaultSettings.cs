@@ -7,12 +7,12 @@ using Foundation;
 namespace Acr.Settings
 {
 
-    public class SettingsImpl : AbstractSettings
+    public class DefaultSettings : AbstractSettings
     {
         readonly NSUserDefaults prefs;
 
 
-        public SettingsImpl(string nameSpace = null)
+        public DefaultSettings(string nameSpace = null)
         {
             this.prefs = nameSpace == null
                 ? NSUserDefaults.StandardUserDefaults

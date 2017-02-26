@@ -8,7 +8,6 @@ using System.Reflection;
 
 namespace Acr.Settings
 {
-
     public abstract class AbstractSettings : ISettings
     {
         public string Environment { get; set; }
@@ -16,7 +15,6 @@ namespace Acr.Settings
         protected abstract object NativeGet(Type type, string key);
         protected abstract void NativeSet(Type type, string key, object value);
         protected abstract void NativeRemove(string[] keys);
-        protected abstract IDictionary<string, string> NativeValues();
 
 
         public virtual object GetValue(Type type, string key, object defaultValue = null)

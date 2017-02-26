@@ -2351,6 +2351,21 @@
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
         }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-arm": {
@@ -4816,6 +4831,21 @@
         "build": {
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
+        }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
         }
       }
     },
@@ -7322,6 +7352,21 @@
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
         }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x64": {
@@ -9796,6 +9841,21 @@
         "build": {
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
+        }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
         }
       }
     },
@@ -12311,6 +12371,21 @@
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
         }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
+        }
       }
     },
     "UAP,Version=v10.0/win10-x86": {
@@ -14785,6 +14860,21 @@
         "build": {
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
+        }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
         }
       }
     },
@@ -17299,6 +17389,21 @@
         "build": {
           "build/uap10.0/xunit.runner.visualstudio.props": {},
           "build/uap10.0/xunit.runner.visualstudio.targets": {}
+        }
+      },
+      "Acr.Settings.Abstractions/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.0",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        }
+      },
+      "Acr.Settings.Uwp/1.0.0": {
+        "type": "project",
+        "framework": "UAP,Version=v10.0",
+        "dependencies": {
+          "Acr.Settings.Abstractions": "1.0.0",
+          "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0"
         }
       }
     }
@@ -25849,6 +25954,16 @@
         "xunit.runner.visualstudio.2.2.0.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
+    },
+    "Acr.Settings.Abstractions/1.0.0": {
+      "type": "project",
+      "path": "../Acr.Settings.Abstractions/Acr.Settings.Abstractions.csproj",
+      "msbuildProject": "../Acr.Settings.Abstractions/Acr.Settings.Abstractions.csproj"
+    },
+    "Acr.Settings.Uwp/1.0.0": {
+      "type": "project",
+      "path": "../Acr.Settings.Uwp/project.json",
+      "msbuildProject": "../Acr.Settings.Uwp/Acr.Settings.Uwp.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -25869,16 +25984,25 @@
       "projectName": "Acr.Settings.Uwp.Tests",
       "projectPath": "C:\\dev\\acr\\settings\\src\\Acr.Settings.Uwp.Tests\\Acr.Settings.Uwp.Tests.csproj",
       "projectJsonPath": "C:\\dev\\acr\\settings\\src\\Acr.Settings.Uwp.Tests\\project.json",
-      "projectStyle": "ProjectJson"
+      "projectStyle": "ProjectJson",
+      "frameworks": {
+        "uap10.0": {
+          "projectReferences": {
+            "C:\\dev\\acr\\settings\\src\\Acr.Settings.Uwp\\Acr.Settings.Uwp.csproj": {
+              "projectPath": "C:\\dev\\acr\\settings\\src\\Acr.Settings.Uwp\\Acr.Settings.Uwp.csproj"
+            },
+            "C:\\dev\\acr\\settings\\src\\Acr.Settings.Abstractions\\Acr.Settings.Abstractions.csproj": {
+              "projectPath": "C:\\dev\\acr\\settings\\src\\Acr.Settings.Abstractions\\Acr.Settings.Abstractions.csproj"
+            }
+          }
+        }
+      }
     },
     "dependencies": {
+      "FluentAssertions": "4.19.0",
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.3.0",
       "xunit": "2.2.0",
-      "xunit.runner.visualstudio": "2.2.0",
-      "FluentAssertions": {
-        "target": "Package",
-        "version": "[4.19.0, )"
-      }
+      "xunit.runner.visualstudio": "2.2.0"
     },
     "frameworks": {
       "uap10.0": {}

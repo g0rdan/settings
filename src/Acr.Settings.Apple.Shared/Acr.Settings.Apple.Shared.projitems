@@ -10,6 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DefaultSettings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)iCloudSettingsImpl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)iCloudSettings.cs" />
   </ItemGroup>
 </Project>
