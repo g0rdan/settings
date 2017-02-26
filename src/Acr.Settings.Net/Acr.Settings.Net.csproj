@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultSettings.cs" />
     <Compile Include="AppConfigSettings.cs" />
     <Compile Include="DatabaseSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

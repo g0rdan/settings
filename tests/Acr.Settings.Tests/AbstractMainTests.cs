@@ -99,7 +99,7 @@ namespace Acr.Settings.Tests
             long value = 1;
             this.Settings.Set("LongTest", value);
             var value2 = this.Settings.Get<long>("LongTest");
-            value.Should().Be(value2));
+            value.Should().Be(value2);
         }
 
 
@@ -170,11 +170,11 @@ namespace Acr.Settings.Tests
         public virtual void Binding_Basic()
         {
             var obj = this.Settings.Bind<TestBind>();
-            obj.IgnoredProperty = 0;
+            //obj.IgnoredProperty = 0;
             obj.StringProperty = "Hi";
 
             this.Settings.Contains("TestBind.StringProperty").Should().BeTrue();
-            this.Settings.Contains("TestBind.IgnoredProperty").Should().BeFalse();
+            //this.Settings.Contains("TestBind.IgnoredProperty").Should().BeFalse();
             this.Settings.Get<string>("TestBind.StringProperty").Should().Be("Hi");
         }
 

@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using Windows.Storage;
 
 
 namespace Acr.Settings
 {
-
-    public class SettingsImpl : AbstractSettings
+    public class DefaultSettings : AbstractSettings
     {
         readonly ApplicationDataContainer container;
 
 
-        public SettingsImpl(bool isRoaming = false)
+        public DefaultSettings(bool isRoaming = false)
         {
             this.container = isRoaming
                 ? ApplicationData.Current.RoamingSettings
@@ -45,17 +42,6 @@ namespace Acr.Settings
         {
             foreach (var key in keys)
                 this.container.Values.Remove(key);
-        }
-
-
-        protected override IDictionary<string, string> NativeValues()
-        {
-            return this.container
-                .Values
-                .ToDictionary(
-                    x => x.Key,
-                    x => x.Value.ToString()
-                );
         }
     }
 }

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Android.App;
 using Android.Content;
 using Android.Preferences;
@@ -20,28 +18,6 @@ namespace Acr.Settings
         }
 
 
-        private ISharedPreferences GetPreferences()
-        {
-            var ctx = Application.Context.ApplicationContext;
-            return this.nameSpace == null
-                ? PreferenceManager.GetDefaultSharedPreferences(ctx)
-                : ctx.GetSharedPreferences(this.nameSpace, FileCreationMode.WorldWriteable);
-        }
-
-
-        private void UoW(Action<ISharedPreferences, ISharedPreferencesEditor> doWork)
-        {
-            using (var prefs = this.GetPreferences())
-            {
-                using (var editor = prefs.Edit())
-                {
-                    doWork(prefs, editor);
-                    editor.Commit();
-                }
-            }
-        }
-
-
         public override bool Contains(string key)
         {
             using (var prefs = this.GetPreferences())
@@ -56,7 +32,6 @@ namespace Acr.Settings
                 var typeCode = Type.GetTypeCode(type);
                 switch (typeCode)
                 {
-
                     case TypeCode.Boolean:
                         return prefs.GetBoolean(key, false);
 
@@ -87,7 +62,6 @@ namespace Acr.Settings
                 var typeCode = Type.GetTypeCode(type);
                 switch (typeCode)
                 {
-
                     case TypeCode.Boolean:
                         x.PutBoolean(key, (bool)value);
                         break;
@@ -127,13 +101,25 @@ namespace Acr.Settings
         }
 
 
-        protected override IDictionary<string, string> NativeValues()
+        ISharedPreferences GetPreferences()
+        {
+            var ctx = Application.Context.ApplicationContext;
+            return this.nameSpace == null
+                ? PreferenceManager.GetDefaultSharedPreferences(ctx)
+                : ctx.GetSharedPreferences(this.nameSpace, FileCreationMode.WorldWriteable);
+        }
+
+
+        void UoW(Action<ISharedPreferences, ISharedPreferencesEditor> doWork)
         {
             using (var prefs = this.GetPreferences())
-                return prefs.All.ToDictionary(
-                    x => x.Key,
-                    x => x.Value.ToString()
-                );
+            {
+                using (var editor = prefs.Edit())
+                {
+                    doWork(prefs, editor);
+                    editor.Commit();
+                }
+            }
         }
     }
 }

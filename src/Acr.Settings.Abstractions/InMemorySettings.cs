@@ -27,7 +27,7 @@ namespace Acr.Settings
 
         protected override void NativeSet(Type type, string key, object value)
         {
-            settings[key] = value;
+            this.settings[key] = value;
         }
 
 

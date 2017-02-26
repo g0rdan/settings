@@ -23,13 +23,13 @@ namespace Acr.Settings.Tests
         }
 
 
-        int? ignoredProperty;
+        //int? ignoredProperty;
 
-        [Ignore]
-        public int? IgnoredProperty
-        {
-            get { return this.ignoredProperty; }
-            set { this.SetProperty(ref this.ignoredProperty, value); }
-        }
+        //[Ignore]
+        //public int? IgnoredProperty
+        //{
+        //    get { return this.ignoredProperty; }
+        //    set { this.SetProperty(ref this.ignoredProperty, value); }
+        //}
     }
 }
