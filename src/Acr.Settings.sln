@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Acr.Settings.Shared", "Acr.Settings.Shared\Acr.Settings.Shared.shproj", "{62F5D64A-791E-460B-AFC4-AF26673EA4CE}"
 EndProject
@@ -48,7 +48,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		..\tests\Acr.Settings.Tests\Acr.Settings.Tests.projitems*{06fe0c81-97bd-46ba-84ca-e7e2e1284aad}*SharedItemsImports = 4
 		..\tests\Acr.Settings.Tests\Acr.Settings.Tests.projitems*{190b3c22-2763-4316-a93a-631995eb07ad}*SharedItemsImports = 13
-		Acr.Settings.Shared\Acr.Settings.Shared.projitems*{2319d890-1473-44fb-a24d-5e773072e174}*SharedItemsImports = 4
 		Acr.Settings.Apple.Shared\Acr.Settings.Apple.Shared.projitems*{2e4d0d6a-ce0c-447d-ac16-2143b62a6b25}*SharedItemsImports = 4
 		Acr.Settings.Shared\Acr.Settings.Shared.projitems*{2e4d0d6a-ce0c-447d-ac16-2143b62a6b25}*SharedItemsImports = 4
 		Acr.Settings.Shared\Acr.Settings.Shared.projitems*{62f5d64a-791e-460b-afc4-af26673ea4ce}*SharedItemsImports = 13
