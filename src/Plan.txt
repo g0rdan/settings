@@ -14,4 +14,9 @@ if environment is used
 if observable collection
 -- use index, but what if it changes?
 
+// if simple type
+"ObCol[0]"
+"ObCol[1]"
+
+// if complex
 "ObCol[0].MyObject.Property1" // if INPC - what if index changes?

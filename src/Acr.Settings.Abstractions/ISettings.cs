@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 
 
@@ -85,13 +87,6 @@ namespace Acr.Settings
 
 
         /// <summary>
-        /// Will create a bound object set FROM the settings
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        T Bind<T>() where T : INotifyPropertyChanged, new();
-
-
-        /// <summary>
         /// Bind to existing instance
         /// </summary>
         /// <param name="obj"></param>
@@ -99,9 +94,9 @@ namespace Acr.Settings
 
 
         /// <summary>
-        /// Unbinds an object from monitoring
+        /// Bind to an observable collection
         /// </summary>
-        /// <param name="obj"></param>
-        void UnBind(INotifyPropertyChanged obj);
+        /// <param name="collection"></param>
+        void Bind<T>(ObservableCollection<T> collection);
     }
 }
