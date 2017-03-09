@@ -32,7 +32,7 @@ A cross platform settings plugin for Xamarin and Windows.  Unlike other setting 
     </metadata>
     <files>
         <!-- PCL -->
-        <file src="..\src\Acr.Settings\bin\Release\Acr.Settings.*" target="lib\portable-net45+netcore45+win8+wpa81+wp8+MonoAndroid10+Xamarin.iOS10" />
+        <file src="..\src\Acr.Settings\bin\Release\Acr.Settings.*" target="lib\portable-win+net45+wp8+win8+wpa81" />
 
         <!-- android -->
         <file src="..\src\Acr.Settings.Android\bin\Release\Acr.Settings.*" target="lib\MonoAndroid10" />
