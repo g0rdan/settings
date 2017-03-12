@@ -10,6 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AssemblyInfo.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CrossSettings.cs" />
   </ItemGroup>
 </Project>

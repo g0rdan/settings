@@ -14,8 +14,8 @@ namespace Acr.Settings.Tests {
 
         [Test]
         public void GlobalInstanceTest() {
-            Assert.IsNotNull(Acr.Settings.Settings.Local);
-            Assert.IsFalse(Acr.Settings.Settings.Local.IsRoamingProfile, "Romaing profile detected");
+            Assert.IsNotNull(Acr.Settings.CrossSettings.Local);
+            Assert.IsFalse(Acr.Settings.CrossSettings.Local.IsRoamingProfile, "Romaing profile detected");
         }
     }
 }

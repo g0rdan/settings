@@ -4,7 +4,11 @@
     },
     "frameworks": {
         "uap10.0": {
-            "imports": "portable-win+net45+wp8+win8+wpa81"
+            "imports": [
+                "portable-win+net45+wp8+win8+wpa81"
+            ]
+            //"imports": ".NETPortable,Version=v4.5,Profile=Profile259"
+            //"imports": "portable-win+net45+wp8+win8+wpa81"
         }
     },
     "runtimes": {

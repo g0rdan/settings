@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿#if !WINDOWS_UWP
+using System.Reflection;
 
 #if DEBUG
 [assembly: AssemblyConfiguration("DEBUG")]
@@ -14,3 +15,4 @@
 
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+#endif
