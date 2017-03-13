@@ -115,9 +115,18 @@
     <EmbeddedResource Include="Properties\Acr.Settings.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
+      <Version>5.3.1</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>9.0.1</Version>
     </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acr.Settings.Interface\Acr.Settings.Interface.csproj">
+      <Project>{ebdadceb-d1b4-4fe4-9873-04cd80edad45}</Project>
+      <Name>Acr.Settings.Interface</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\Acr.Settings.Shared\Acr.Settings.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

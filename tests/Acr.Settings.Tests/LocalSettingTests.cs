@@ -2,20 +2,24 @@
 using System;
 using NUnit.Framework;
 
-namespace Acr.Settings.Tests {
+namespace Acr.Settings.Tests
+{
 
     [TestFixture]
-    public class LocalSettingTests : AbstractSettingTests {
+    public class LocalSettingTests : AbstractSettingTests
+    {
 
-        protected override ISettings Create() {
+        protected override ISettings Create()
+        {
             return new SettingsImpl(null);
         }
 
 
         [Test]
-        public void GlobalInstanceTest() {
-            Assert.IsNotNull(Acr.Settings.CrossSettings.Local);
-            Assert.IsFalse(Acr.Settings.CrossSettings.Local.IsRoamingProfile, "Romaing profile detected");
+        public void GlobalInstanceTest()
+        {
+            Assert.IsNotNull(Acr.Settings.CrossSettings.Current);
+            //Assert.IsFalse(Acr.Settings.CrossSettings.Local.IsRoamingProfile, "Romaing profile detected");
         }
     }
 }

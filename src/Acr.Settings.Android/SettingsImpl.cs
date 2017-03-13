@@ -14,7 +14,7 @@ namespace Acr.Settings
         readonly string nameSpace;
 
 
-        public SettingsImpl(string nameSpace)
+        public SettingsImpl(string nameSpace = null)
         {
             this.nameSpace = nameSpace;
             this.IsRoamingProfile = (nameSpace != null);
