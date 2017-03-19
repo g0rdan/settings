@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>netstandard1.0;portable-win+net45+wp8+win8+wpa81;net45;monoandroid70;xamarinios;xamarintvos;xamarinmac</TargetFrameworks>
+        <!--<TargetFrameworks>netstandard1.0;portable-net45+win8+wpa81+wp8;net45;monoandroid70;xamarinios;xamarintvos;xamarinmac</TargetFrameworks>-->
+        <TargetFrameworks>netstandard1.0;net45;monoandroid70;xamarinios;xamarintvos</TargetFrameworks>
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
         <Authors>Allan Ritchie</Authors>
         <PackageLicenseUrl>http://opensource.org/licenses/ms-pl.html</PackageLicenseUrl>
@@ -32,9 +33,33 @@ Supports
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageReleaseNotes>6.0
 Netstandard support
-</PackageReleaseNotes>
+        </PackageReleaseNotes>
         <Company />
         <Version>6.0.0</Version>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' OR '$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8' ">
+        <DefineConstants>$(DefineConstants);BAIT</DefineConstants>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'portable-net45+win8+wpa81+wp8' ">
+        <TargetFrameworkIdentifier>.NETPortable</TargetFrameworkIdentifier>
+        <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+        <TargetFrameworkProfile>Profile259</TargetFrameworkProfile>
+        <!--<NugetTargetMoniker>.NETPortable,Version=v0.0,Profile=Profile259</NugetTargetMoniker>-->
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(TargetFramework)' == 'monoandroid70'">
+        <DefineConstants>$(DefineConstants);ANDROID</DefineConstants>
+        <TargetFrameworkIdentifier>MonoAndroid</TargetFrameworkIdentifier>
+        <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+        <AndroidUseLatestPlatformSdk>False</AndroidUseLatestPlatformSdk>
+        <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+        <LanguageTargets>$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets</LanguageTargets>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(TargetFramework)' == 'xamarinios' OR '$(TargetFramework)' == 'xamarintvos' OR '$(TargetFramework)' == 'xamarinmac' ">
+        <DefineConstants>$(DefineConstants);APPLE</DefineConstants>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">
@@ -50,17 +75,54 @@ Netstandard support
         <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'xamarinios' OR '$(TargetFramework)' == 'xamarintvos' OR '$(TargetFramework)' == 'xamarinmac' ">
-        <Compile Include="Platforms\Apple\*.cs" />
-    </ItemGroup>
+    <!--<ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.0' ">
+        <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    </ItemGroup>-->
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
         <Compile Include="Platforms\Net\*.cs" />
+
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
         <Reference Include="System.Configuration" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'monoandroid70' ">
         <Compile Include="Platforms\Android\*.cs" />
+
+        <Reference Include="Mono.Android" />
+        <Reference Include="mscorlib" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Xml" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'xamarinios' ">
+        <Compile Include="Platforms\Apple\*.cs" />
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.iOS" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'xamarintvos' ">
+        <Compile Include="Platforms\Apple\*.cs" />
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.tvOS" />
+    </ItemGroup>
+
+    <ItemGroup Condition=" '$(TargetFramework)' == 'xamarinmac' ">
+        <Compile Include="Platforms\Apple\*.cs" />
+
+        <Reference Include="System" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Core" />
+        <Reference Include="Xamarin.Mac" />
     </ItemGroup>
 
     <ItemGroup Condition=" '$(TargetFramework)' == 'uap10.0' ">

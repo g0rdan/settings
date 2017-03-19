@@ -196,10 +196,7 @@ namespace Acr.Settings
         }
 
 
-        protected virtual bool ShouldClear(string key)
-        {
-            return !this.KeysNotToClear.Any(x => x.Equals(key));
-        }
+        protected virtual bool ShouldClear(string key) => !this.KeysNotToClear.Any(x => x.Equals(key));
 
 
         protected virtual Type UnwrapType(Type type)
@@ -211,20 +208,16 @@ namespace Acr.Settings
         }
 
 
-        protected virtual bool IsStringifyType(Type t)
-        {
-            return (
-                t == typeof(DateTime) ||
-                t == typeof(DateTimeOffset) ||
-                t == typeof(bool) ||
-                t == typeof(short) ||
-                t == typeof(int) ||
-                t == typeof(long) ||
-                t == typeof(double) ||
-                t == typeof(float) ||
-                t == typeof(decimal)
-            );
-        }
+        protected virtual bool IsStringifyType(Type t) =>
+            t == typeof(DateTime) ||
+            t == typeof(DateTimeOffset) ||
+            t == typeof(bool) ||
+            t == typeof(short) ||
+            t == typeof(int) ||
+            t == typeof(long) ||
+            t == typeof(double) ||
+            t == typeof(float) ||
+            t == typeof(decimal);
 
 
         public virtual T Bind<T>() where T : INotifyPropertyChanged, new()
@@ -254,15 +247,11 @@ namespace Acr.Settings
         }
 
 
-        public virtual void UnBind(INotifyPropertyChanged obj)
-        {
-            obj.PropertyChanged -= this.OnPropertyChanged;
-        }
+        public virtual void UnBind(INotifyPropertyChanged obj) => obj.PropertyChanged -= this.OnPropertyChanged;
 
 
-        protected virtual IEnumerable<PropertyInfo> GetTypeProperties(Type type)
-        {
-            return type
+        protected virtual IEnumerable<PropertyInfo> GetTypeProperties(Type type) =>
+            type
                 .GetTypeInfo()
                 .DeclaredProperties
                 .Where(x =>
@@ -270,7 +259,6 @@ namespace Acr.Settings
                     x.CanWrite &&
                     x.GetCustomAttribute<IgnoreAttribute>() == null
                 );
-        }
 
 
         protected virtual void OnPropertyChanged(object sender, PropertyChangedEventArgs args)

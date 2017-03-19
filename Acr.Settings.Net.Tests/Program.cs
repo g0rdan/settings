@@ -1,5 +1,4 @@
 ﻿using System;
-using Acr.Settings;
 
 
 namespace Acr.Settings.Net.Tests
@@ -8,9 +7,9 @@ namespace Acr.Settings.Net.Tests
     {
         static void Main(string[] args)
         {
-            Hello("AppSettings", new AppConfigSettingsImpl("Acr.Settings.Net.Tests.exe.config"));
-            //Hello("AppSettings", new AppConfigSettingsImpl());
-            Hello("Registry", new RegistrySettingsImpl("Acr.Settings", true));
+            Hello("AppSettings", new AppConfigSettings("Acr.Settings.Net.Tests.exe.config"));
+            //Hello("AppSettings", new AppConfigSettings());
+            Hello("Registry", new RegistrySettings("Acr.Settings", true));
             Console.ReadLine();
         }
 
