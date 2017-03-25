@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <!--<TargetFrameworks>netstandard1.0;portable-net45+win8+wpa81+wp8;net45;monoandroid70;xamarinios;xamarintvos;xamarinmac</TargetFrameworks>-->
-        <TargetFrameworks>netstandard1.0;net45;monoandroid70;xamarinios;xamarintvos</TargetFrameworks>
+        <TargetFrameworks>netstandard1.0;net45;monoandroid70;Xamarin.iOS10</TargetFrameworks>
         <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
         <Authors>Allan Ritchie</Authors>
         <PackageLicenseUrl>http://opensource.org/licenses/ms-pl.html</PackageLicenseUrl>
@@ -28,7 +28,7 @@ Supports
         <Product>Acr.Settings ($(TargetFramework))</Product>
         <IncludeSymbols>true</IncludeSymbols>
         <UseFullSemVerForNuGet>true</UseFullSemVerForNuGet>
-        <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+        <!--<GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>-->
         <DebugType>full</DebugType>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <PackageReleaseNotes>6.0
@@ -100,7 +100,7 @@ Netstandard support
         <Reference Include="System.Xml" />
     </ItemGroup>
 
-    <ItemGroup Condition=" '$(TargetFramework)' == 'xamarinios' ">
+    <ItemGroup Condition=" '$(TargetFramework)' == 'Xamarin.iOS10' ">
         <Compile Include="Platforms\Apple\*.cs" />
         <Reference Include="System" />
         <Reference Include="System.Xml" />
